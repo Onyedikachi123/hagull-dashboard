@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import VendorSidebar from './components/Sidebar/VendorSidebar.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
+import VendorDashboard from './pages/vendor/Dashboard';
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+    // Determine the role of the user (this should come from authentication)
+    const userRole = 'vendor'; 
+
+    return (
+        <Router>
+            <Navbar />
+            {userRole === 'vendor' && <VendorSidebar />}
+            {/* Similarly for admin and super admin */}
+
+            <Routes>
+                <Route path="/vendor/dashboard" element={<VendorDashboard />} />
+                {/* Define other routes based on roles */}
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;
