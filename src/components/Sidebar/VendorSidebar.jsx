@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./Sidebar.css";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Logo from "../../imgs/logo.png";
-import { motion } from 'framer-motion';
+import { faBars, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  faInbox,
-  faBars,
-  faComments,
-  faFileAlt,
-  faStar,
-  faTicketAlt,
-  faBell,
-  faQuestionCircle,
-  faChartBar,
-  faHome,
-} from "@fortawesome/free-solid-svg-icons";
+import { VendorSidebarData } from "./Data";
+// import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-  // const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(0);
 
   const [expanded, setExpaned] = useState(true);
+
+  useEffect(() => {
+
+  }, [selected]);
+
+  const handleClick = (index) => {
+    setSelected(index);
+    // any other logic needed on click
+  };
 
   const sidebarVariants = {
     true: {
@@ -31,6 +31,14 @@ const Sidebar = () => {
     },
   };
   console.log(window.innerWidth);
+
+  // const navigate = useNavigate();
+
+  // const handleSignOut = () => {
+
+  //   navigate('/login');
+  // };
+
   return (
     <>
       <div
@@ -44,128 +52,28 @@ const Sidebar = () => {
         className="sidebar"
         variants={sidebarVariants}
         animate={window.innerWidth <= 768 ? `${expanded}` : ""}
-        style={{width: '265px'}}
       >
-        {/* logo */}
-        <div className="logo">
-          <img src={Logo} alt="Logo" />
+    
+
+        {/* menu */}
+        <div className="menu">
+          {VendorSidebarData.map((item, index) => (
+            <Link
+              to={item.link}
+              className={selected === index ? "menuItem active" : "menuItem"}
+              key={index}
+              // onClick={() => setSelected(index)}
+              onClick={() => handleClick(index)}
+            >
+              <FontAwesomeIcon icon={item.icon} />
+              {item.title}
+            </Link>
+          ))}
+          <Link to="/register" className="menuItem">
+            <FontAwesomeIcon icon={faSignOutAlt} />
+            Sign Out
+          </Link>
         </div>
-        <ul className="nav nav-pills flex-column mb-auto">
-          <li className="nav-item">
-            <Link to="/" className="nav-link active" aria-current="page">
-              <FontAwesomeIcon icon={faHome} /> Dashboard
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/payment-and-invoicing"
-              className="nav-link"
-              aria-current="page"
-            >
-              <FontAwesomeIcon icon={faInbox} /> Payment and Invoicing
-            </Link>
-          </li>
-          
-        </ul>
       </motion.div>
     </>
   );

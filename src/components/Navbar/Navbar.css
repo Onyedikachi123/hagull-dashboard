@@ -1,0 +1,43 @@
+.navbar {
+    background-color: var(--whiteBackground);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed; 
+    z-index: 102; /* Ensure it's above the sidebar */
+    top: 0; /* Align to the top of the viewport */
+    width: 100%; 
+}
+
+
+
+.logo img {
+    width: 6.25rem;
+    height: 1.75rem;
+}
+
+.navbar-icons {
+    display: flex;
+    color: var(--orange);
+}
+
+.icon {
+    margin-left: 10px; /* Adjust spacing between icons */
+}
+
+@media screen and (max-width: 1200px) {
+    .logo{
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .logo{
+      display: flex;
+    }
+  
+  }
+
+
