@@ -1,19 +1,19 @@
 /* dashboard */
 .dashboard {
-    /* display: grid;
+    display: grid;
   height: 100%;
   width: 100%;
    border-radius: 2rem; 
    background-color: var(--glass); 
   overflow: hidden;
-  grid-template-columns: 11rem auto 20rem; */
-  /* padding-left: 12.5rem; */
+  grid-template-columns: 11rem auto 20rem;
+ 
   
 }
 
-.dashboard {
+/* .dashboard {
   display: flex;
-}
+} */
 
 .dashboard-content {
   flex-grow: 1;
